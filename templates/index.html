@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Food Calori Table</h1>
+<a href="{% url 'addcontent'%}"><input type="button" value="Add new food" ></a>
+<a href="{% url 'chcontent'%}"><input type="button" value="trackcal"></a>
+<div class="continer">
+        <div class="row">
+            {% for i in cal_model %}
+            <div class="col-md-4">
+                <div class="card card-body">
+                    <img src="{{ i.img.url }} " alt="" style="height: 200px;width: 280px;position: relative;left: 80px;">
+                    <h4>Name:{{i.name}}</h4>
+                    <h5>Type:{{i.type}}</h5>
+                    <a href="{% url 'new' pk=i.id %}">click me</a>
+                    <form action="{% url 'fav' pk=i.id}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="food_item" value="{{i.id}}">
+                        <!-- {% if is_fav %}
+                            <button type="submit">
+                                
+                            </button> -->
+
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+{% endblock %}

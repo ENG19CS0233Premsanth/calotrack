@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card card-body">
+    {% for i in data %}
+    <img src="{{i.img.url}}" alt="" height="200px" width="200px">
+    {% endfor %}
+    {% for i in data %}
+    <div >
+        <h4>NAME : {{i.name}}</h4><br>
+       <h4>QUANTITY: {{i.quantity}}</h4> <br>
+       <h4>PROTIEIN : {{i.protein}}</h4> <br>
+       <h4>CARBS: {{i.carbs}}</h4> <br>
+       <h4>FAT : {{i.fat}}</h4> <br>
+       <h4>VITAMINS : {{i.vitamins}}</h4> <br>
+        
+       </div>
+    {% endfor %}
+    <!-- {{data}} -->
+</div>
+
+{% endblock %}

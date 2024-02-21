@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <div class="card card-body">
+              <h1>Add New Food Item</h1>
+              <form action="" method="POST">
+                  {% csrf_token %}
+                  {{ form3 }}
+                  <br>
+                  <input type="submit" value="Add" class="btn btn-warning">
+              </form>
+            </div>
+        </div>
+    </div>
+<table class="table table-hover">
+        <tr><th>Food</th>
+            <th>Quantity</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fats</th>
+            <th>Nutrients</th>
+            <th>Vitamins</th>
+            <th>delete</th>
+            <th>update</th>
+            
+        </tr>
+            {% for i in saved %}
+        <tr>
+
+            <td>{{i.name}}</td>
+            <td>{{i.quantity}}</td>
+            <td>{{i.protien}}</td>
+            <td>{{i.carbs}}</td>
+            <td>{{i.fat}}</td>
+            <td>{{i.nutrients}}</td>
+            <td>{{i.vitamins}}</td>
+            <td><a href="{% url 'delete' pk=i.id %}"><input type="button" value="delete"></td></a>
+            <td><a href="{% url 'upd' pk=i.id %}"><input type="button" value="update"></td></a>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>total</td>
+            <td></td>
+            <td>{{tp}}</td>
+            <td>{{tc}}</td>
+            <td>{{tf}}</td>
+        </tr>
+        
+        
+</table>
+
+<br>
+<div style="height: 500px;width: 500px;">
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['protien', 'carbs', 'fat'],
+        datasets: [{
+          label: '# of Votes',
+          data: [{{tp}},{{tc}},{{tf}}],
+          borderWidth: 5
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+{% endblock %}

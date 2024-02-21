@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- <h1>Add New Food Item</h1>
+    <form action="" method="POST">
+        {%csrf_token%}
+        {{ caloform }}
+        <input type="submit" value="SUBMIT">
+    </form> -->
+    <div class="container">
+        <div class="jumbotron">
+            <div class="card card-body">
+              <h1>Add New Food Item</h1>
+              <form action="" method="POST">
+                  {% csrf_token %}
+                  {{ caloform }}
+                  <br>
+                  <input type="submit" value="Add" class="btn btn-warning">
+              </form>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
